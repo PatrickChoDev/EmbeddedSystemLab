@@ -93,13 +93,25 @@ int main(void)
   MX_USART2_UART_Init();
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
-
+   int adcval = 0;
+   char buf[256];
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+   while (1)
+   {
+   // Start ADC conversion
+   HAL_ADC_Start(&hadc1);
+   // Wait for 1000ms or when the conversion is finished.
+   if (HAL_ADC_PollForConversion(&hadc1, 1000) == HAL_OK) {
+   // Read the ADC value
+   adcval = HAL_ADC_GetValue(&hadc1);
+   // Write integer to buffer
+   sprintf (buf, "%d\r\n" , adcval);
+   // Transmitted with UART
+   HAL_UART_Transmit(&huart2, buf, strlen(buf), 1000);
+   }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -255,21 +267,11 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
-
   /*Configure GPIO pin : B1_Pin */
   GPIO_InitStruct.Pin = B1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : LD2_Pin */
-  GPIO_InitStruct.Pin = LD2_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
