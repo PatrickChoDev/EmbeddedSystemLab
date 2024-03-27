@@ -1,0 +1,10 @@
+../Core/Src/main.c:100:5:main	1
+../Core/Src/main.c:196:6:SystemClock_Config	3
+../Core/Src/main.c:243:13:MX_USART2_UART_Init	2
+../Core/Src/main.c:276:13:MX_GPIO_Init	1
+../Core/Src/main.c:329:6:StartDefaultTask	1
+../Core/Src/main.c:341:6:led_timer_blue	1
+../Core/Src/main.c:349:6:led_timer_green	1
+../Core/Src/main.c:357:6:led_timer_red	1
+../Core/Src/main.c:365:6:led_timer_white	1
+../Core/Src/main.c:376:6:Error_Handler	1

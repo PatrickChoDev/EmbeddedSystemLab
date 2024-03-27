@@ -1,0 +1,30 @@
+15:10:21 **** Incremental Build of configuration Debug for project Lab05-02 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:107:44: warning: pointer targets in passing argument 2 of 'HAL_SPI_Transmit' differ in signedness [-Wpointer-sign]
+  107 |                   HAL_SPI_Transmit(&hspi2, "I", 2,100);
+      |                                            ^~~
+      |                                            |
+      |                                            char *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:670:70: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+  670 | HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                             ~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "Lab05-02.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/patrick/Workspaces/Study/EmbeddedSystemLab/Lab05-02/STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab05-02.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab05-02.elf
+ 
+arm-none-eabi-size  Lab05-02.elf 
+arm-none-eabi-objdump -h -S Lab05-02.elf  > "Lab05-02.list"
+   text	   data	    bss	    dec	    hex	filename
+  10172	     20	   1732	  11924	   2e94	Lab05-02.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab05-02.list
+ 
+
+15:10:21 Build Finished. 0 errors, 1 warnings. (took 274ms)
+

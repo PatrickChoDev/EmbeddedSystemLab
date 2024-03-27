@@ -4,4 +4,17 @@
 	</section>
 	<section name="org.eclipse.cdt.ui.text.hover.CMacroExpansionExploration">
 	</section>
+	<section name="PDOMSearchPage">
+		<item key="caseSensitive" value="false"/>
+		<item key="searchFlags" value="227191"/>
+		<list key="previousPatterns">
+			<item value="*callback*"/>
+			<item value="callback"/>
+		</list>
+	</section>
+	<section name="CResourceRenameRefactoringInputPage">
+	</section>
+	<section name="OptionalMessageDialog.hide.">
+		<item key="FormatAll" value="true"/>
+	</section>
 </section>
